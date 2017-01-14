@@ -26,6 +26,23 @@
 
 @implementation ViewController
 
+#warning 注意，一个大小，还有全屏的时候，系统会默认把状态栏隐藏，so要显示的时候，可以自己去设置
+- (void)test
+{
+    //1.屏幕的中心，不管横屏还是竖屏
+    CGPoint center = CGPointMake([UIScreen mainScreen].bounds.size.width / 2, [UIScreen mainScreen].bounds.size.height / 2);
+    
+    //2.如果view的大小为全屏的时候,需要把屏幕的宽高调换下位置
+    UIView *contentView;
+    //竖屏时候的设置
+    contentView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    //横屏时候的设置
+    contentView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+    
+    //3.显示状态栏
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
